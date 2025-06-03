@@ -1,0 +1,3438 @@
+<html>
+  <head>
+    <style>
+      .main-container {
+        display: flex;
+        justify-content: center;
+        max-width: 1000px;
+        margin: 0px auto;
+      }
+
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 15%;
+      }
+      .video-container-rosetta {
+        display: flex;
+        justify-content: center; /* Align videos to the center */
+        flex-wrap: nowrap; /* Prevents wrapping of items */
+      }
+
+      .video-wrapper-rosetta {
+        flex: 0 0 20%; /* Do not grow, do not shrink, start at 32% width */
+        margin: 0 0.5%; /* Provide some space between the videos */
+        box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+      }
+
+      .video-container-single {
+        display: flex;
+        justify-content: center; /* Align videos to the center */
+        flex-wrap: wrap; /* Prevents wrapping of items */
+        margin-bottom: 20px; /* Adjust this value to add vertical space between rows */
+      }
+
+      .video-wrapper-single {
+        flex: 0 0 35%; /* Do not grow, do not shrink, start at 32% width */
+        margin: 0 0.5%; /* Provide some space between the videos */
+        box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+      }
+
+      .video-title {
+        text-align: center; /* Center the title text above the video */
+        margin-bottom: 0.3em; /* Space between title and video */
+      }
+
+      video {
+        width: 100%; /* Ensure the video fills its container */
+        height: auto;
+        display: block; /* Ensures that the video is a block-level element */
+      }
+
+       /* Style the button that is used to open and close the collapsible content */
+        .collapsible {
+        background-color: rgb(214, 214, 242);
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active, .collapsible:hover {
+        background-color: rgb(126, 177, 219);
+        }
+
+        /* Style the collapsible content. Note: hidden by default */
+        .collapsible-content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+        } 
+    </style>
+</head>
+
+  <body>
+    <div class="main-container">
+      <div class="content">
+        <div style="margin-top: 1.2cm"></div>
+        <h1>
+          Narrated Qualitative Results for Discovered Concepts via Video
+          Transformer Concept Discovery
+        </h1>
+
+        <div style="margin-top: 0.6cm"></div>
+        <p>
+          This page is part of the supplemental materials of the anonymous CVPR
+          2024 paper submission titled "Understanding Video Transformers via
+          Universal Concept Discovery".
+        </p>
+
+        <h3>Table of contents</h3>
+        <div id="table-of-contents" style="padding-left: 10px">
+            <a href="#figure1">Figure 1 visualization </a><br/>
+            <a href="#most-important">Important concepts</a><br/>
+            <a href="#rosetta">Rosetta concepts</a><br/>
+            <a href="#qkv-compare">QKV comparison</a><br/>
+        </div>
+
+          <div class="spacer" style="border-bottom: solid 1px black; height: 50px; flex-basis: 100%"></div>
+          <div class="spacer" style="height: 30px; flex-basis: 100%"></div>
+          <h1 id="figure1">Figure 1 Visualization</h1>
+          <p>
+            In this visualization, we show the video version of Figure 1 from
+            the main paper. The prediction heatmap of the TCOW model is shown on
+            the left. Earlier layers capture positional information, while
+            deeper layers capture events, objects, containers or track the target
+            object through occlusions.
+          </p>
+
+          <div class="video-container-rosetta">
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Input and Prediction</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/prediction.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Layer 3 - Head 5</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/cluster6lay2head4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Layer 7 - Head 8</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/cluster11lay6head7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Layer 10 - Head 8</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/cluster4lay9head7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Layer 12 - Head 1</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/cluster0lay11head0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 50px; flex-basis: 100%"></div>
+        <div class="spacer" style="border-bottom: solid 1px black; height: 10px; flex-basis: 100%"></div>
+        <h1 id="most-important">Most important concepts</h1>
+
+        <div style="margin-top: 0.6cm"></div>
+        <p>
+          We visualize the most important concepts for each of the four
+          models: (1) TCOW, (2) supervised VideoMAE, (3) SSL VideoMAE, and (4)
+          InternVideo. Only the top-1 concept is shown by default, please click on "Show more" to see the full list. 
+        </p>
+
+        <h2>Most important concepts - TCOW</h2>
+        <h3>TCOW Concept 1 - Layer 5 Head 8</h3>
+        <p>
+          This concept highlights objects with similar appearance, suggesting
+          the model solving the disambiguation problem by first identifying
+          possible distractors in mid-layers.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/1/rgb_video_5.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/1/rgb_video_4.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/1/layer4_head7_concept_7_tube_5.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/1/layer4_head7_concept_7_tube_4.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <button type="button" class="collapsible">Show more</button>
+        <div class="collapsible-content">
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>TCOW Concept 2 - Layer 9 Head 12</h3>
+        <p>This concept tracks the target object throughout the video.</p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/2/rgb_video_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/2/rgb_video_5.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/2/layer8_head11_concept_3_tube_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/2/layer8_head11_concept_3_tube_5.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>TCOW Concept 3 - Layer 3 Head 11</h3>
+        <p>
+          This concept captures temporally invariant spatial position in the
+          top-left region of the video
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/3/rgb_video_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/3/rgb_video_7.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/3/layer2_head10_concept_3_tube_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/3/layer2_head10_concept_3_tube_7.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>TCOW Concept 4 - Layer 3 Head 9</h3>
+        <p>
+          This concept captures vertical spatial position and highlights a
+          temporally invariant horizontal slice across the video.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/4/rgb_video_12.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/4/rgb_video_13.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/4/layer2_head8_concept_3_tube_12.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/4/layer2_head8_concept_3_tube_13.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>TCOW Concept 5 - Layer 10 Head 10</h3>
+        <p>
+          This concept again captures the target object across the entire video.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/5/rgb_video_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/5/rgb_video_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/5/layer9_head9_concept_1_tube_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/5/layer9_head9_concept_1_tube_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>TCOW Concept 6 - Layer 2 Head 4</h3>
+        <p>
+          This concept captures spatial information in the top left region of
+          the video.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/6/rgb_video_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/6/rgb_video_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/6/layer1_head4_concept_1_tube_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/6/layer1_head4_concept_1_tube_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>TCOW Concept 7 - Layer 3 Head 3</h3>
+        <p>
+          This concept also captures spatial information in the top left region
+          of the video.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/7/rgb_video_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/7/rgb_video_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/7/layer2_head2_concept_7_tube_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/7/layer2_head2_concept_7_tube_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>TCOW Concept 8 - Layer 3 Head 4</h3>
+        <p>
+          This concept also captures spatial information in the top of the
+          video. Interestingly, all concepts encoding a spatiotemporal basis
+          highlight regions in the middle of the video or higher. These regions
+          of the video may be particularly important for tracking objects in
+          Kubric because they are randomly spawned above containers in each
+          video. Thus, a precise understanding of the top regions of the video
+          is required for tracking the target object.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/8/rgb_video_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/8/rgb_video_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/8/layer2_head3_concept_6_tube_0.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/tcow/8/layer2_head3_concept_6_tube_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div style="margin-top: 0.6cm"></div>
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        </div>
+
+        <h2>
+          Most important concepts - Supervised VideoMAE (dropping something into
+          something)
+        </h2>
+        <h3>Supervised VideoMAE Concept 1 - Layer 11 Head 9</h3>
+        <p>
+          Interestingly, the most important concept highlights the object being
+          dropped until the dropping event, at which point both the object and
+          container are highlighted.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/1/rgb_video_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/1/rgb_video_4.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/1/layer10_head8_concept_5_tube_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/1/layer10_head8_concept_5_tube_4.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <button type="button" class="collapsible">Show more</button>
+        <div class="collapsible-content">
+        <h3>Supervised VideoMAE Concept 2 - Layer 8 Head 1</h3>
+        <p>
+          This concept captures the container being dropped into, notably not
+          capturing the object itself and making a ring-like shape.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/2/rgb_video_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/2/rgb_video_4.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/2/layer7_head0_concept_5_tube_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/2/layer7_head0_concept_5_tube_4.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>Supervised VideoMAE Concept 3 - Layer 4 Head 3</h3>
+        <p>
+          As in the TCOW model, VideoMAE also contains concepts that capture
+          spatial information, this one highlighting the center of the video.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/3/rgb_video_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/3/rgb_video_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/3/layer3_head2_concept_9_tube_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/3/layer3_head2_concept_9_tube_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>Supervised VideoMAE Concept 4 - Layer 12 Head 2</h3>
+        <p>
+          This concept is in the last layer of the model and captures the
+          container being dropping into. Notably, the video on the left shows an
+          unusual container, an almost full drawer, that the model still is able
+          to successfully highlights until the bag is dropped into it.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/4/rgb_video_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/4/rgb_video_7.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/4/layer11_head1_concept_2_tube_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/4/layer11_head1_concept_2_tube_7.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>Supervised VideoMAE Concept 5 - Layer 6 Head 3</h3>
+        <p>
+          This is a positional concept highlighting the top and center region of
+          the video.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/5/rgb_video_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/5/rgb_video_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/5/layer5_head2_concept_2_tube_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/5/layer5_head2_concept_2_tube_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>Supervised VideoMAE Concept 6 - Layer 12 Head 3</h3>
+        <p>
+          Interestingly, this concept, also in the final layer, highlights
+          nothing in the video until the dropping event occurs, at which point
+          the container and the object are highlighted.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/6/rgb_video_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/6/rgb_video_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/6/layer11_head2_concept_1_tube_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/6/layer11_head2_concept_1_tube_3.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>Supervised VideoMAE Concept 7 - Layer 4 Head 3</h3>
+        <p>
+          This is another positional concept highlighting the top and center
+          region of the video.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/7/rgb_video_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/7/rgb_video_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/7/layer3_head2_concept_1_tube_1.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/7/layer3_head2_concept_1_tube_2.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+
+        <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <h3>Supervised VideoMAE Concept 8 - Layer 4 Head 3</h3>
+        <p>
+          This is a positional concept highlighting the bottom and center region
+          of the video.
+        </p>
+        <div class="video-container-single">
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/8/rgb_video_10.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Input</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/8/rgb_video_11.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/8/layer3_head2_concept_3_tube_10.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="video-wrapper-single">
+            <div class="video-title">Concept</div>
+            <video autoplay loop muted controls width="100%" height="auto">
+              <source
+                src="concepts/Important/videomae/8/layer3_head2_concept_3_tube_11.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+        </div>
+
+        <div style="margin-top: 0.6cm">
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+
+          <h2>
+            Most important concepts - SSL VideoMAE (dropping something into
+            something)
+          </h2>
+          <h3>SSL VideoMAE Concept 1 - Layer 4 Head 11</h3>
+          <p>
+            The most important concept captures the container being dropped
+            into.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/1/rgb_video_9.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/1/rgb_video_24.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/1/layer3_head10_concept_2_tube_9.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/1/layer3_head10_concept_2_tube_24.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <button type="button" class="collapsible">Show more</button>
+          <div class="collapsible-content">
+          <h3>SSL VideoMAE Concept 2 - Layer 12 Head 10</h3>
+          <p>
+            The second most important concept also captures the container being
+            dropping into.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/2/rgb_video_26.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/2/rgb_video_31.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/2/layer11_head9_concept_1_tube_26.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/2/layer11_head9_concept_1_tube_31.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>SSL VideoMAE Concept 3 - Layer 7 Head 7</h3>
+          <p>
+            Interestingly, we observe the third most important concept is a
+            spatially invariant temporal basis that captures the beginning of
+            the video. At the beginning of the video, everything is highlighted,
+            and then after a few frames, nothing is highlighted.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/3/rgb_video_17.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/3/rgb_video_18.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/3/layer6_head6_concept_4_tube_17.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/3/layer6_head6_concept_4_tube_18.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>SSL VideoMAE Concept 4 - Layer 3 Head 10</h3>
+          <p>
+            This concept is a spatial position concept capturing the top center
+            region of the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/4/rgb_video_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/4/rgb_video_10.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/4/layer2_head9_concept_4_tube_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/4/layer2_head9_concept_4_tube_10.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>SSL VideoMAE Concept 5 - Layer 5 Head 8</h3>
+          <p>
+            This concept is a spatial position concept capturing the right
+            region of the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/5/rgb_video_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/5/rgb_video_23.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/5/layer4_head7_concept_6_tube_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/5/layer4_head7_concept_6_tube_23.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>SSL VideoMAE Concept 6 Layer 9 Head 12</h3>
+          <p>
+            This is another spatial position concept capturing the top center
+            region of the video.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/6/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/6/rgb_video_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/6/layer8_head11_concept_10_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/6/layer8_head11_concept_10_tube_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>SSL VideoMAE Concept 7 - Layer 4 Head 4</h3>
+          <p>
+            This is an interesting spatiotemporal basis that highlights the
+            right part of the video during the middle temporal segment of the
+            video.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/7/rgb_video_12.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/7/rgb_video_16.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/7/layer3_head3_concept_1_tube_12.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/7/layer3_head3_concept_1_tube_16.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>SSL VideoMAE Concept 8 - Layer 12 Head 9</h3>
+          <p>
+            This is another spatial position concept capturing the bottom left
+            region of the video.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/8/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/8/rgb_video_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/8/layer11_head9_concept_5_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/ssl/8/layer11_head9_concept_5_tube_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          </div>
+
+          <h2>
+            Most important concepts - InternVideo (dropping something into
+            something)
+          </h2>
+          <h3>InternVideo Concept 1 - Layer 11 Head 2</h3>
+          <p>
+            Interestingly, the most important concept for InternVideo captures
+            hands dropping the object.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/1/rgb_video_11_concept_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/1/rgb_video_16_concept_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/1/layer10_head1_concept_2_tube_11.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/1/layer10_head1_concept_2_tube_16.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <button type="button" class="collapsible">Show more</button>
+          <div class="collapsible-content">
+          <h3>InternVideo Concept 2 - Layer 6 Head 8</h3>
+          <p>
+            This concept captures textured patterns in the image. Notably, it
+            highlights background and foreground regions that contain textured
+            patterns and tracks these regions throughout the video.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/2/rgb_video_2_concept_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/2/rgb_video_4_concept_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/2/layer5_head8_concept_5_tube_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/2/layer5_head8_concept_5_tube_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>InternVideo Concept 3 - Layer 3 Head 11</h3>
+          <p>
+            This is another spatial position concept capturing the bottom right
+            region of the video.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/3/rgb_video_0_concept_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/3/rgb_video_1_concept_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/3/layer2_head10_concept_6_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/3/layer2_head10_concept_6_tube_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>InternVideo Concept 4 - Layer 10 Head 12</h3>
+          <p>
+            This is another spatial position concept capturing the bottom right
+            region of the video, however, different from concept 3, it is not
+            completely temporally invariant and the boundary of the concept
+            support changes non-trivially over the video.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/4/rgb_video_2_concept_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/4/rgb_video_10_concept_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/4/layer9_head11_concept_5_tube_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/4/layer9_head11_concept_5_tube_10.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>InternVideo Concept 5 - Layer 4 Head 1</h3>
+          <p>
+            This is another spatial position concept capturing the bottom left
+            region of the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/5/rgb_video_2_concept_11.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/5/rgb_video_3_concept_11.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/5/layer3_head0_concept_11_tube_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/5/layer3_head0_concept_11_tube_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>InternVideo Concept 6 - Layer 7 Head 1</h3>
+          <p>
+            This is another spatial position concept capturing the right region
+            of the video.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/6/rgb_video_2_concept_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/6/rgb_video_6_concept_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/6/layer6_head0_concept_4_tube_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/6/layer6_head0_concept_4_tube_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>InternVideo Concept 7 - Layer 4 Head 3</h3>
+          <p>
+            This is another spatial position concept capturing the top right
+            region of the video.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/7/rgb_video_12_concept_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/7/rgb_video_13_concept_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/7/layer3_head2_concept_4_tube_12.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/7/layer3_head2_concept_4_tube_13.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>InternVideo Concept 8 - Layer 1 Head 3</h3>
+          <p>
+            This concept, which occurs at the first layer, captures orange-brown
+            color.
+          </p>
+
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/8/rgb_video_4_concept_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/8/rgb_video_9_concept_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/8/layer0_head2_concept_3_tube_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/intern/8/layer0_head2_concept_3_tube_9.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          </div>
+          <div class="spacer" style="border-bottom: solid 1px black; height: 50px; flex-basis: 100%"></div>
+          <div class="spacer" style="height: 30px; flex-basis: 100%"></div>
+          <h1 id="rosetta">Rosetta concepts - SSv2: rolling something on a flat surface</h1>
+          <div style="margin-top: 0.6cm"></div>
+        <p>
+          Here we visualize representative Rosetta concepts that are shared between all the 4 models analyzed in our experiemnts: (1) TCOW, (2) supervised VideoMAE, (3) VideoMAE SSL, and (4)
+          InternVideo. Only one Rosetta concept is shown by default, please click on "Show more" to see the full list. 
+        </p>
+          <div class="spacer" style="height: 10px; flex-basis: 100%"></div>
+          <h3>Rosetta concept 1</h3>
+          <p>
+            In this visualization, we show the Rosetta concept with the highest
+            score of 22% mIoU when filtering by the most important 7.5% of
+            concepts. This Rosetta concept captures spatial position information
+            and is contained in the early layers of all models.
+          </p>
+
+          <div class="video-container-rosetta">
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/1/rgb_video_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">TCOW Layer3 Head4</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/1/tcow/layer2_head3_concept_concept_11_tube_23.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAE Layer3 Head2</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/1/vidmae/layer2_head1_concept_concept_7_tube_11.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAESSL Layer3 Head4</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/1/ssl/layer2_head3_concept_concept_1_tube_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">InternVideo Layer4 Head1</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/1/intern/layer3_head0_concept_concept_8_tube_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <!--    <h3>Rosetta concept 2 </h3>-->
+          <!--    <p>In this visualization, we show a Rosetta concept another high score of 19% mIoU-->
+          <!--        when filtering by the most important 7.5% of concepts.-->
+          <!--        Again, we see that this Rosetta concept captures spatial position information in the top left corner of the video.</p>-->
+          <!--            <div class="video-container-rosetta">-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">Input</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/2/rgb_video_0.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">TCOW Layer3 Head1</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/2/tcow/layer2_head1_concept_2_tube_23.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">VidMAE Layer5 Head4</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/2/vidmae/layer4_head3_concept_4_tube_23.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">VidMAE-SSL Layer11 Head9</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/2/ssl/layer10_head8_concept_6_tube_15.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">InternVideo Layer7 Head5</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/2/intern/layer6_head4_concept_5_tube_0.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--            </div>-->
+
+        <div class="spacer" style="height: 10px; flex-basis: 100%"></div>
+        <button type="button" class="collapsible">Show more</button>
+        <div class="collapsible-content">
+          <h3>Rosetta concept 2</h3>
+
+          <p>
+            This visualization shows a Rosetta concept with a score of 18% mIoU.
+            Interestingly, we observe that all models learn to localize and
+            track individual objects over space and time. This is particularly
+            interesting for self-supervised models like VideoMAE-SSL and
+            InternVideo, which do not have access to any labels.
+          </p>
+
+          <div style="margin-top: 0.6cm"></div>
+          <div class="video-container-rosetta">
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="110%" height="auto">
+                <source
+                  src="concepts/Rosetta/RosettaConceptsRolling/intern_rgb_video_18.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">TCOW Layer9 Head8</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/RosettaConceptsRolling/tcow/layer8_head7_concept_3_tube_14.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAE Layer11 Head4</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/RosettaConceptsRolling/vidmae/layer10_head3_tube_18.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAESSL Layer12 Head7</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/RosettaConceptsRolling/ssl/layer11_head6_tube_16.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">InternVideo Layer10 Head5</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/RosettaConceptsRolling/intern/layer9_head4_tube_18.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <h3>Rosetta concept 3</h3>
+          <p>
+            In this visualization, we show a Rosetta concept with a rosetta
+            score of 15% mIoU. We again observe an object-centric concept in all models, capturing the
+            notion of hand.
+          </p>
+
+          <div class="video-container-rosetta">
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/hands/intern_rgb_video_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">TCOW Layer4 Head5</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/hands/tcow/layer3_head5_concept_5_tube_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAE Layer8 Head1</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/hands/videomae/layer7_head0_concept_4_tube_16.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAESSL Layer10 Head 5</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/hands/ssl/layer9_head4_concept_5_tube_8.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">InternVideo Layer10 Head2</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/hands/intern/layer10_head1_concept_1_tube_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <h3>Rosetta concept 4</h3>
+          <p>
+            In this visualization we observe a Rosetta concept with a score of
+            18% mIoU that highlights the region the object is rolling into. This
+            suggests all models encode a notion of where an object will move to
+            in the future.
+          </p>
+          <div class="video-container-rosetta">
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/3/rgb_video_9.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">TCOW Layer11 Head12</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/3/tcow/layer10_head11_concept_1_tube_38.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAE Layer11 Head2</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/3/vidmae/layer10_head1_concept_3_tube_34.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAESSL Layer6 Head6</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/3/ssl/layer5_head5_concept_1_tube_58.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">InternVideo Layer9 Head12</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/3/intern/layer8_head11_concept_4_tube_9.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <!--            <h3>Rosetta concept 5 (18% mIoU) </h3>-->
+          <!--            <div style="margin-top: 0.6cm;">-->
+          <!--        <div class="video-container-rosetta">-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">Input</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/5/rgb_video_0.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">TCOW</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/5/tcow/layer5_head1_concept_3_tube_36.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">VidMAE</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/5/vidmae/layer5_head0_concept_10_tube_24.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">VidMAE-SSL</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/5/ssl/layer7_head9_concept_3_tube_19.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">InternVideo</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/5/intern/layer2_head2_concept_5_tube_0.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--            </div>-->
+
+          <!--                <h3>Rosetta concept 6 (17% mIoU) [only showing one concept for now since it is positional, will add later]</h3>-->
+          <!--            <div style="margin-top: 0.6cm;">-->
+          <!--        <div class="video-container-rosetta">-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">Input</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/6/rgb_video_2.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">TCOW</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">VidMAE</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">VidMAE-SSL</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">InternVideo</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/6/intern/layer3_head5_concept_8_tube_2.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--            </div>-->
+
+          <h3>Rosetta concept 5</h3>
+          <p>
+            Contrasting concept 5, that showed a concept capturing where an
+            object will roll to, this visualization shows a Rosetta concept (16% mIoU) that
+            captures the region that the rolling object has rolled from.
+          </p>
+          <div style="margin-top: 0.6cm"></div>
+          <div class="video-container-rosetta">
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/7/rgb_video_10.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">TCOW Layer9 Head5</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/7/tcow/layer8_head4_concept_3_tube_15.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAE Layer7 Head8</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/7/vidmae/layer6_head7_concept_5_tube_34.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">VidMAESSL Layer12 Head7</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/7/ssl/layer11_head6_concept_2_tube_20.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">InternVideo Layer10 Head2</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Rosetta/rsoafs_top10/7/intern/layer9_head1_concept_2_tube_10.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          </div>
+
+          <!--                    <h3>Rosetta concept 8 (16% mIoU)  [only showing one concept for now since it is positional, will add later]</h3>-->
+          <!--            <div style="margin-top: 0.6cm;">-->
+          <!--        <div class="video-container-rosetta">-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">Input</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/8/rgb_video_7.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">TCOW</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">VidMAE</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">VidMAE-SSL</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">InternVideo</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/8/intern/layer5_head9_concept_3_tube_7.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--            </div>-->
+
+          <!--                    <h3>Rosetta concept 9 (15% mIoU)  [only showing one concept for now since it is positional, will add later]</h3>-->
+          <!--            <div style="margin-top: 0.6cm;">-->
+          <!--        <div class="video-container-rosetta">-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">Input</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/9/rgb_video_11.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">TCOW</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">VidMAE</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">VidMAE-SSL</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">InternVideo</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/9/intern/layer5_head4_concept_1_tube_11.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--            </div>-->
+
+          <!--        <h3>Rosetta concept 10 (15% mIoU) [only showing one concept for now since it is positional, will add later] </h3>-->
+          <!--            <div style="margin-top: 0.6cm;">-->
+          <!--        <div class="video-container-rosetta">-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">Input</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/10/rgb_video_0.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">TCOW</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">VidMAE</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                <div class="video-wrapper-rosetta">&ndash;&gt;-->
+          <!--&lt;!&ndash;                    <div class="video-title">VidMAE-SSL</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;                      <video autoplay loop muted controls width="100%" height="auto">&ndash;&gt;-->
+          <!--&lt;!&ndash;                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">&ndash;&gt;-->
+          <!--&lt;!&ndash;                      </video>&ndash;&gt;-->
+          <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">InternVideo</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/rsoafs_top10/10/intern/layer2_head10_concept_4_tube_0.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--            </div>-->
+
+          <!--            <h3>Rosetta concept 7 (7% mIoU) </h3>-->
+          <!--            <p>In this visualization, we show a Rosetta concept with the-->
+          <!--                a rosetta score of 7% mIoU when filtering by the most important 50% of concepts-->
+          <!--                and targeting the class `dropping something behind something'. Interestingly, models display-->
+          <!--                spatiotemporal reasoning and capture parts of the container before the dropping motion, however,-->
+          <!--                we see that InternVideo is more temporally invariant. </p>-->
+
+          <!--            <div class="video-container-rosetta">-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">Input</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/RosettaConceptsBeforeDrop/intern_rgb_video_9.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">TCOW Layer10 Head4  </div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/RosettaConceptsBeforeDrop/tcow/layer10_head3_concept_4_tube_5.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">VidMAE Layer9 Head2</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/RosettaConceptsBeforeDrop/vidmae/layer8_head1_concept_3_tube_17.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">VidMAE-SSL Layer10 Head2</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/RosettaConceptsBeforeDrop/ssl/layer9_head1_concept_concept_6_tube_0.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--                <div class="video-wrapper-rosetta">-->
+          <!--                    <div class="video-title">InternVideo Layer8 Head5</div>-->
+          <!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+          <!--                        <source src="concepts/Rosetta/RosettaConceptsBeforeDrop/intern/layer7_head4_concept_4_tube_9.mp4" type="video/mp4">-->
+          <!--                      </video>-->
+          <!--                    </div>-->
+          <!--            </div>-->
+
+
+          <div class="spacer" style="border-bottom: solid 1px black; height: 50px; flex-basis: 100%"></div>
+          <div class="spacer" style="height: 30px; flex-basis: 100%"></div>
+          <h1 id="qkv-compare">Query Key and Value Comparison</h1>
+
+          <div style="margin-top: 0.6cm"></div>
+          <p>
+            Finally, we demonstrate that VTCD produces interpretable concepts for units of interest other than Keys which
+            are studied in the main paper. Here, we visualize the most important concepts when discovering concepts
+            in the queries, keys and values for the TCOW model. We note some similarities between the most important concepts
+            discovered in each unit: (i) queries and keys produce concepts that closely track the target object, (ii) all units
+            produce positional concepts. Interestingly, we note some differences between the three units: (i) Queries
+            produce multiple concepts that track the target object during the beginning of the video, but switch focus midway
+            through; (ii) Values produce the most positional concepts. Overall, Keys result in most diverse and interpretable concpets, validating our design choice. 
+          </p>
+
+          <h2>Most important concepts - TCOW Keys</h2>
+          <h3>Keys Concept 1 - Layer 5 Head 8</h3>
+          <p>
+            This concept highlights objects with similar appearance, suggesting
+            the model solving the disambiguation problem by first identifying
+            possible distractors in mid-layers.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/1/rgb_video_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/1/rgb_video_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/1/layer4_head7_concept_7_tube_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/1/layer4_head7_concept_7_tube_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <button type="button" class="collapsible">Show more</button>
+        <div class="collapsible-content">
+          <h3>Keys Concept 2 - Layer 9 Head 12</h3>
+          <p>This concept tracks the target object throughout the video.</p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/2/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/2/rgb_video_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/2/layer8_head11_concept_3_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/2/layer8_head11_concept_3_tube_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Keys Concept 3 - Layer 3 Head 11</h3>
+          <p>
+            This concept captures temporally invariant spatial position in the
+            top-left region of the video
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/3/rgb_video_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/3/rgb_video_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/3/layer2_head10_concept_3_tube_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/3/layer2_head10_concept_3_tube_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Keys Concept 4 - Layer 3 Head 9</h3>
+          <p>
+            This concept captures vertical spatial position and highlights a
+            temporally invariant horizontal slice across the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/4/rgb_video_12.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/4/rgb_video_13.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/4/layer2_head8_concept_3_tube_12.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/4/layer2_head8_concept_3_tube_13.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Keys Concept 5 - Layer 10 Head 10</h3>
+          <p>
+            This concept again captures the target object across the entire
+            video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/5/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/5/rgb_video_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/5/layer9_head9_concept_1_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/5/layer9_head9_concept_1_tube_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Keys Concept 6 - Layer 2 Head 4</h3>
+          <p>
+            This concept captures spatial information in the top left region of
+            the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/6/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/6/rgb_video_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/6/layer1_head4_concept_1_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/6/layer1_head4_concept_1_tube_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Keys Concept 7 - Layer 3 Head 3</h3>
+          <p>
+            This concept also captures spatial information in the top left
+            region of the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/7/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/7/rgb_video_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/7/layer2_head2_concept_7_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/7/layer2_head2_concept_7_tube_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Keys Concept 8 - Layer 3 Head 4</h3>
+          <p>
+            This concept also captures spatial information in the top of the
+            video. Interestingly, all concepts encoding a spatiotemporal basis
+            highlight regions in the middle of the video or higher. These
+            regions of the video may be particularly important for tracking
+            objects in TCOW Kubric because they are randomly spawned above containers
+            in each video. Thus, a precise understanding of the top regions of
+            the video is required for tracking the target object.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/8/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/8/rgb_video_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/8/layer2_head3_concept_6_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/tcow/8/layer2_head3_concept_6_tube_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          </div>
+
+          <h2>Most important concepts - TCOW Queries</h2>
+          <div class="spacer" style="height: 1px; flex-basis: 100%"></div>
+          <h3>Queries Concept 1 - Layer 10 Head 10</h3>
+          <p>
+            Interestingly, the most important concept tracks the target object
+            through occlusions.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/1/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/1/rgb_video_13.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/1/layer9_head9_concept_7_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/1/layer9_head9_concept_7_tube_13.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+        <button type="button" class="collapsible">Show more</button>
+        <div class="collapsible-content">
+          <h3>Queries Concept 2 - Layer 8 Head 6</h3>
+          <p>
+            The second most important concept highlights the region around the
+            object during the beginning and middle of the video, but then
+            remains in the same position afterwards.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/2/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/2/rgb_video_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/2/layer7_head5_concept_5_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/2/layer7_head5_concept_5_tube_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Queries Concept 3 - Layer 8 Head 11</h3>
+          <p>
+            Similar to concept 2, this concept tracks the target object until it
+            collides with something, and then ceases to highlight the target
+            object and highlights the same region in space for the rest of the
+            video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/3/rgb_video_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/3/rgb_video_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/3/layer7_head10_concept_2_tube_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/3/layer7_head10_concept_2_tube_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Queries Concept 4 - Layer 9 Head 8</h3>
+          <p>This concept closely tracks the target object.</p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/4/rgb_video_8.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/4/rgb_video_10.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/4/layer8_head7_concept_4_tube_8.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/4/layer8_head7_concept_4_tube_10.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Queries Concept 5 - Layer 9 Head 12</h3>
+          <p>
+            This concept highlights the target object falling in the top of the
+            video, but then stops tracking the object and remains highlighting
+            the top center region of the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/5/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/5/rgb_video_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/5/layer8_head11_concept_8_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/5/layer8_head11_concept_8_tube_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Queries Concept 6 - Layer 7 Head 9</h3>
+          <p>
+            Once again, this concept highlights the target object in the first
+            frame, but then captures spatial position in the center of the
+            video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/6/rgb_video_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/6/rgb_video_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/6/layer6_head8_concept_10_tube_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/6/layer6_head8_concept_10_tube_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Queries Concept 7 - Layer 8 Head 8</h3>
+          <p>
+            Interestingly, this concept seems to track the region that the
+            target object is moving into, potentially suggesting the model is
+            anticipating where the target object will move to next.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/7/rgb_video_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/7/rgb_video_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/7/layer7_head7_concept_6_tube_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/7/layer7_head7_concept_6_tube_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Queries Concept 8 - Layer 6 Head 1</h3>
+          <p>This concept captures a single container in the video.</p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/8/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/8/rgb_video_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/8/layer5_head0_concept_2_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/queries_tcow/8/layer5_head0_concept_2_tube_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+            </div>
+
+          <h2>Most important concepts - TCOW Values</h2>
+          <div class="spacer" style="height: 1px; flex-basis: 100%"></div>
+          <h3>Values Concept 1 - Layer 5 Head 9</h3>
+          <p>
+            Interestingly, the most important concept for the Values vaptures
+            the background region in the top left region of the video. Notably,
+            it does not highlight any objects, forming a ring-like shape around
+            any object that travels through the top left region.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/1/rgb_video_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/1/rgb_video_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/1/layer4_head8_concept_6_tube_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/1/layer4_head8_concept_6_tube_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+        <button type="button" class="collapsible">Show more</button>
+        <div class="collapsible-content">
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Values Concept 2 - Layer 4 Head 9</h3>
+          <p>
+            This is a temporally invariant spatial position concept highlighting
+            the top left region of the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/2/rgb_video_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/2/rgb_video_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/2/layer3_head8_concept_2_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/2/layer3_head8_concept_2_tube_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Values Concept 3 - Layer 2 Head 11</h3>
+          <p>
+            This concept captures positional information in the middle left of
+            the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/3/rgb_video_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/3/rgb_video_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/3/layer1_head10_concept_6_tube_5.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/3/layer1_head10_concept_6_tube_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Values Concept 4 - Layer 4 Head 10</h3>
+          <p>
+            This concept highlights large objects in the video. This could be
+            the model identifying possible occluders or containers in the middle
+            layers for later processing.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/4/rgb_video_4_concept_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/4/rgb_video_8_concept_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/4/layer3_head9_concept_2_tube_4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/4/layer3_head9_concept_2_tube_8.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Values Concept 5 - Layer 9 Head 12</h3>
+          <p>
+            Interestingly, this concept captures nothing until several frames
+            into the video, at which point it captures large objects in the left
+            part of the image, again suggesting the model may be identifying
+            possible occluders.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/5/rgb_video_0_concept_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/5/rgb_video_1_concept_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/5/layer8_head11_concept_3_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/5/layer8_head11_concept_3_tube_1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Values Concept 6 - Layer 8 Head 11</h3>
+          <p>
+            This concept highlights many objects surrounding the target object,
+            but not the target object itself.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/6/rgb_video_0_concept_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/6/rgb_video_9_concept_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/6/layer7_head10_concept_2_tube_0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/6/layer7_head10_concept_2_tube_9.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Values Concept 7 - Layer 2 Head 3</h3>
+          <p>
+            This concept captures both spatial information, highlighting the top
+            portion of the video, but also approximately follows some object
+            boundaries making the concept not totally temporally invariant.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/7/rgb_video_2_concept_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/7/rgb_video_7_concept_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/7/layer1_head2_concept_2_tube_2.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/7/layer1_head2_concept_2_tube_7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+          <div class="spacer" style="height: 20px; flex-basis: 100%"></div>
+          <h3>Values Concept 8 - Layer 5 Head 8</h3>
+          <p>
+            This is a spatial position concept highlighting the top center
+            region of the video.
+          </p>
+          <div class="video-container-single">
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/8/rgb_video_3_concept_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Input</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/8/rgb_video_6_concept_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/8/layer4_head7_concept_3_tube_3.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-single">
+              <div class="video-title">Concept</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Important/values_tcow/8/layer4_head7_concept_3_tube_6.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <head>
+    <script type="text/javascript">
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                content.style.display = "none";
+                } else {
+                content.style.display = "block";
+                }
+            });
+        } 
+    </script>
+    </head>
+</html>
+
+<!--            <h3>Rosetta concept 3 (18% mIoU) </h3>-->
+<!--            <div style="margin-top: 0.6cm;">-->
+<!--        <div class="video-container-rosetta">-->
+<!--                <div class="video-wrapper-rosetta">-->
+<!--                    <div class="video-title">Input</div>-->
+<!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">-->
+<!--                      </video>-->
+<!--                    </div>-->
+<!--                <div class="video-wrapper-rosetta">-->
+<!--                    <div class="video-title">TCOW</div>-->
+<!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">-->
+<!--                      </video>-->
+<!--                    </div>-->
+<!--                <div class="video-wrapper-rosetta">-->
+<!--                    <div class="video-title">VidMAE</div>-->
+<!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">-->
+<!--                      </video>-->
+<!--                    </div>-->
+<!--                <div class="video-wrapper-rosetta">-->
+<!--                    <div class="video-title">VidMAE-SSL</div>-->
+<!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">-->
+<!--                      </video>-->
+<!--                    </div>-->
+<!--                <div class="video-wrapper-rosetta">-->
+<!--                    <div class="video-title">InternVideo</div>-->
+<!--                      <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                        <source src="concepts/Rosetta/rsoafs_top10/" type="video/mp4">-->
+<!--                      </video>-->
+<!--                    </div>-->
+<!--            </div>-->

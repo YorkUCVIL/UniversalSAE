@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<title>VTCD</title>
+		<link rel='icon' href='/~jjyu/favicon.png'>
+		<link rel='stylesheet' href='project_page.css' type='text/css'>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+		<style>
+		  .main-container {
+			display: flex;
+			justify-content: center;
+			max-width: 1000px;
+			margin: 0px auto;
+		  }
+
+		  .center {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 15%;
+		  }
+		  .video-container-rosetta {
+			display: flex;
+			justify-content: center; /* Align videos to the center */
+			flex-wrap: nowrap; /* Prevents wrapping of items */
+		  }
+
+		  .video-wrapper-rosetta {
+			flex: 0 0 20%; /* Do not grow, do not shrink, start at 32% width */
+			margin: 0 0.5%; /* Provide some space between the videos */
+			box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+		  }
+
+		  .video-container-single {
+			display: flex;
+			justify-content: center; /* Align videos to the center */
+			flex-wrap: wrap; /* Prevents wrapping of items */
+			margin-bottom: 20px; /* Adjust this value to add vertical space between rows */
+		  }
+
+		  .video-wrapper-single {
+			flex: 0 0 35%; /* Do not grow, do not shrink, start at 32% width */
+			margin: 0 0.5%; /* Provide some space between the videos */
+			box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+		  }
+
+		  .video-title {
+			text-align: center; /* Center the title text above the video */
+			margin-bottom: 0.3em; /* Space between title and video */
+		  }
+
+		  video {
+			width: 100%; /* Ensure the video fills its container */
+			height: auto;
+			display: block; /* Ensures that the video is a block-level element */
+		  }
+
+		   /* Style the button that is used to open and close the collapsible content */
+			.collapsible {
+			background-color: rgb(214, 214, 242);
+			color: #444;
+			cursor: pointer;
+			padding: 18px;
+			width: 100%;
+			border: none;
+			text-align: left;
+			outline: none;
+			font-size: 15px;
+			}
+
+			/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+			.active, .collapsible:hover {
+			background-color: rgb(126, 177, 219);
+			}
+
+			/* Style the collapsible content. Note: hidden by default */
+			.collapsible-content {
+			padding: 0 18px;
+			display: none;
+			overflow: hidden;
+			background-color: #f1f1f1;
+			}
+    </style>
+
+	</head>
+
+	<body>
+		<h1 class='project_title'>Understanding Video Transformers via
+          Universal Concept Discovery</h1>
+		<div class='project_date'>January 20, 2024</div>
+
+		<h2 class='project_section'>Authors</h2>
+		<div class='project_author_wrapper'>
+			<a class='project_author' href='https://mkowal2.github.io/'>
+				<img class='author_icon' src='img/matt_kowal.png'>
+				<p>Matt Kowal</p>
+			</a>
+			<a class='project_author' href='https://www.achaldave.com/'>
+				<img class='author_icon' src='img/achal.jpeg'>
+				<p>Achal Dave</p>
+			</a>
+			<a class='project_author' href='https://www.tri.global/about-us/dr-rares-ambrus'>
+				<img class='author_icon' src='img/RaresAmbrus.jpeg'>
+				<p>Rares Ambrus</p>
+			</a>
+			<a class='project_author' href='https://adriengaidon.com/'>
+				<img class='author_icon' src='img/adrien-gaidon.jpg'>
+				<p>Adrien Gaidon</p>
+			</a>
+			<a class='project_author' href='https://csprofkgd.github.io/'>
+				<img class='author_icon' src='img/kosta.jpg'>
+				<p>Konstantinos G. Derpanis</p>
+			</a>
+			<a class='project_author' href='https://pvtokmakov.github.io/home/'>
+				<img class='author_icon' src='img/pavel.jpeg'>
+				<p>Pavel Tokmakov</p>
+			</a>
+		</div>
+
+		 <h1 id="figure1">What concepts are important for object permanence in video transformer layers?</h1>
+<!--          <p>-->
+<!--            In this visualization, we show the video version of Figure 1 from-->
+<!--            the main paper. The prediction heatmap of the TCOW model is shown on-->
+<!--            the left. Earlier layers capture positional information, while-->
+<!--            deeper layers capture events, objects, containers or track the target-->
+<!--            object through occlusions.-->
+<!--          </p>-->
+
+          <div class="video-container-rosetta">
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Input and Model Prediction </div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/prediction.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Layer 3 - Temporally Invariant Spatial Positions</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/cluster6lay2head4.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Layer 7 - Collisions Between Objects </div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/cluster11lay6head7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Layer 10 - Container Containing Object </div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/cluster4lay9head7.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="video-wrapper-rosetta">
+              <div class="video-title">Layer 12: Object Tracking Through Occlusions</div>
+              <video autoplay loop muted controls width="100%" height="auto">
+                <source
+                  src="concepts/Figure1/cluster0lay11head0.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+
+<!--		<img src='vtcd_imgs/teaser.png'>-->
+
+		<h2 class='project_section'>Abstract</h2>
+		This paper studies the problem of concept-based interpretability of transformer representations for videos. Concretely, we seek to explain the decision-making process of video transformers based on high-level, spatiotemporal concepts that are automatically discovered.
+		Prior research on concept-based interpretability has concentrated solely on image-level tasks.
+		Comparatively, video models deal with the added temporal dimension, increasing complexity and posing challenges in identifying dynamic concepts over time.
+		In this work, we systematically address these challenges by introducing the first Video Transformer Concept Discovery (VTCD) algorithm.
+		To this end, we propose an efficient approach for unsupervised identification of units of video transformer representations - concepts, and ranking their importance to the output of a model.
+		The resulting concepts are highly interpretable, revealing spatio-temporal reasoning mechanisms and object-centric representations in unstructured video models.
+		Performing this analysis jointly over a diverse set of supervised and self-supervised representations, we discover that some of these mechanism are universal in video transformers.
+		Finally, we demonstrate that VTCD can be used to improve model performance for fine-grained tasks.
+
+		<h1 class='project_section'>Method Overview</h1>
+		 <h2 id="figure2">Concept Discovery</h2>
+		<img src='img/main_method.png'>
+		To discover concepts in video transformers, we first pass a video dataset through a pretrained model and extract
+		the activations of a given layer. We then cluster the activations using SLIC to generate spatiotemporal tubelets.
+		Finally, we cluster the dataset of tubelets and use the resulting centers as concepts.
+
+		<h2 id="figure3">Concept Importance</h2>
+		<div style='text-align: center;'>
+			<img src='img/importance.png' style='width: 700px; height: auto;'>
+		</div>
+		We rank the importance of concepts.
+
+		<h2 id="figure4">Rosetta Concepts</h2>
+		We find universal concepts in all models.
+
+		<h1 class='project_section'>Results</h1>
+
+		<h2 >Important Concepts</h2>
+		<h3 >Semi VOS</h3>
+
+		<h3 >Action Recognition</h3>
+
+		<h2 >Rosetta Concepts</h2>
+
+		<h1 >Application: Efficient Inference with Concept-Head Pruning</h1>
+		<div style='text-align: center;'>
+			<img src='img/headprune.png' style='width: 500px; height: auto;'>
+		</div>
+<!--		<img src='img/ar_result.png'>-->
+<!--		The first domain we study with our proposed approach is action recognition. A main finding in our work is that Diving48 is not as biased towards dynamics as previously thought. Interestingly, something-something-v2 guides the model to learn significantly more dynamic information than either Diving48 or Kinetics. Additionally, Diving48 results in `residual' neurons: neurons which encode neither static nor dynamic information.-->
+
+<!--		<img src='img/vos_result.png'>-->
+<!--		Our method has shown generality to other tasks such as video object segmentation (VOS). We found that 2-stream architectures with cross connections result in a better balance between static and dynamic. Originally, reciprocal (motion-to-appearance and appearance-to-motion) cross connections in RTNet showed few dynamic units. However, we showed that a model with reciprocal cross connections that does not undergo DUTS pretraining results in more dynamics. Finally, we show well known datasets used for training VOS models are static biased and find that TAOVOS may act as a better dataset to encourage the learning of dynamics.-->
+<!--		<h1 class='project_video'> Presentation and Demo </h1>-->
+<!--			<center>-->
+<!--				<iframe width="900" height="500" src="https://www.youtube.com/embed/3EWinAPTBkE">-->
+<!--				</iframe>-->
+			</center>
+
+
+
+		<h2 class='project_section'>Material</h2>
+		<div class='project_material_wrapper'>
+			<a style='margin-left:27.3%;' class='project_material' href='https://arxiv.org/abs/2206.02846'>
+				<img style='margin: 4.1% 0;' class='shadow_icon' src='img/paper.png'>
+				<p>Paper</p>
+			</a>
+			<!--
+			<a class='project_material' href='https://drive.google.com/file/d/0B_0Q7h5sp_RlX3ZoNkZSSU52cTA/view'>how
+				<img class='shadow_icon' src='img/poster_preview.png'>
+				<p>Poster</p>
+			</a>
+			<a class='project_material' href='https://drive.google.com/file/d/0Bz1dfcnrpXM-T1BjU1dhV29wQXM/view'>
+				<img style='margin: 23.4% 0;' class='shadow_icon' src='img/slide_preview.png'>
+				<p>Slides</p>
+			</a>
+			-->
+			<a class='project_material' href='https://github.com/YorkUCVIL/Static-Dynamic-Interpretability/'>
+				<img style='margin: 14.6% 0;' src='icons/github.svg'>
+				<p>Code</p>
+			</a>
+		</div>
+
+		<h2 class='project_section'>Citation</h2>
+		<div class="cite_bib">
+			@inproceedings{kowal2022deeper,<br>
+				&ensp;&ensp;&ensp; author = {Kowal, Matthew and Siam, Mennatullah and Islam, Md Amirul and Bruce, Neil and Wildes, Richard P. and Derpanis, Konstantinos G.},<br>
+				&ensp;&ensp;&ensp; title = {A Deeper Dive Into What Deep Spatiotemporal Networks Encode: Quantifying Static vs. Dynamic Information},<br>
+				&ensp;&ensp;&ensp; booktitle = {Conference on Computer Vision and Pattern Recognition},<br>
+				&ensp;&ensp;&ensp; year = {2022}<br>
+			}
+		</div>
+
+
+<!--		<h2 class='project_section'>Misc</h2>-->
+<!--		<a href='appendix'>PNG images from appendix</a>-->
+		<!-- <a href=''>Slides for presentation at ECCV 2020 <i>Normalizing Flows and Invertible Neural Networks in Computer Vision</i> tutorial</a> -->
+
+	</body>
+</html>
