@@ -1,477 +1,368 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Visual Concept Connectome (VCC): Open World Concept Discovery and their Interlayer Connections in Deep Models.">
-  <meta name="keywords" content="Interpretability, Multilayer, Concepts">
+  <meta name="description" content="Universal Sparse Autoencoders: Interpretable Cross-Model Concept Alignment">
+  <meta name="keywords" content="Interpretability, Universal, Sparse Autoencoders, SAE, Concept">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VOpen World Concept Discovery and their Interlayer Connections in Deep Models</title>
+  <meta property="og:title" content="Universal Sparse Autoencoders">
+  <meta property="og:image" content="img/fig1cap.png">
+  <meta property="og:description" content="Interpretable cross-model concept alignment using sparse autoencoders.">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Universal Sparse Autoencoders: Interpretable Cross-Model Concept Alignment</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- Global site tag (gtag.js) - Google Analytics
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
-
     gtag('js', new Date());
-
     gtag('config', 'G-PYVRSFMDRL');
-  </script>
+  </script> -->
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 
   <style>
-          p {
-            margin-bottom: 10px;
-          }
-		  .main-container {
-			display: flex;
-			justify-content: center;
-			max-width: 1000px;
-			margin: 0px auto;
-		  }
+    p {
+      margin-bottom: 10px;
+    }
 
-		  .center {
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
-			width: 15%;
-		  }
-          .vertical-divider {
-            height: auto; /* Adjust the height as needed */
-            width: 1px; /* Thickness of the line */
-            background-color: black; /* Color of the line */
-            margin: 0 auto; /* Center the line */
-          }
+    .main-container {
+      display: flex;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 0px auto;
+    }
 
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 15%;
+    }
 
-		  .video-container-rosetta {
-			display: flex;
-			justify-content: center; /* Align videos to the center */
-			flex-wrap: nowrap; /* Prevents wrapping of items */
-		  }
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    .active,
+    .collapsible:hover {
+      background-color: rgb(126, 177, 219);
+    }
 
-		  .video-wrapper-rosetta {
-			flex: 0 0 20%; /* Do not grow, do not shrink, start at 32% width */
-			margin: 0 0.5%; /* Provide some space between the videos */
-			box-sizing: border-box; /* Include padding and borders in the element's total width and height */
-		  }
+    .main-figure-wrapper {
+      width: 100%;
+      margin: auto;
+      text-align: center;
+      position: relative;
+      overflow: visible;
+      /* optional, ensures overflow isn't hidden */
+    }
 
-		  .video-container-single {
-			display: flex;
-			justify-content: center; /* Align videos to the center */
-			flex-wrap: wrap; /* Prevents wrapping of items */
-			margin-bottom: 20px; /* Adjust this value to add vertical space between rows */
-		  }
-
-		  .video-wrapper-single {
-			flex: 0 0 32%; /* Do not grow, do not shrink, start at 32% width */
-			margin: 0 0.5%; /* Provide some space between the videos */
-			box-sizing: border-box; /* Include padding and borders in the element's total width and height */
-		  }
-
-		  .video-title {
-			text-align: center; /* Center the title text above the video */
-			margin-bottom: 0.3em; /* Space between title and video */
-		  }
-
-		  video {
-			width: 100%; /* Ensure the video fills its container */
-			height: auto;
-			display: block; /* Ensures that the video is a block-level element */
-		  }
-
-		   /* Style the button that is used to open and close the collapsible content */
-			.collapsible {
-			background-color: rgb(214, 214, 242);
-			color: #444;
-			cursor: pointer;
-			padding: 18px;
-			width: 100%;
-			border: none;
-			text-align: left;
-			outline: none;
-			font-size: 15px;
-			}
-
-			/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-			.active, .collapsible:hover {
-			background-color: rgb(126, 177, 219);
-			}
-
-			/* Style the collapsible content. Note: hidden by default */
-			.collapsible-content {
-			padding: 0 18px;
-			display: none;
-			overflow: hidden;
-			background-color: #f1f1f1;
-			}
-    </style>
+    .main-figure-img {
+      width: 115%;
+      max-width: none;
+      /* allow full 115% width */
+      height: auto;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
 
 </head>
+
 <body>
 
-<!--<nav class="navbar" role="navigation" aria-label="main navigation">-->
-<!--  <div class="navbar-brand">-->
-<!--    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">-->
-<!--      <span aria-hidden="true"></span>-->
-<!--      <span aria-hidden="true"></span>-->
-<!--      <span aria-hidden="true"></span>-->
-<!--    </a>-->
-<!--  </div>-->
-<!--  <div class="navbar-menu">-->
-<!--    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">-->
-<!--      <a class="navbar-item" href="https://keunhong.com">-->
-<!--      <span class="icon">-->
-<!--          <i class="fas fa-home"></i>-->
-<!--      </span>-->
-<!--      </a>-->
 
-<!--      <div class="navbar-item has-dropdown is-hoverable">-->
-<!--        <a class="navbar-link">-->
-<!--          More Research-->
-<!--        </a>-->
-<!--        <div class="navbar-dropdown">-->
-<!--          <a class="navbar-item" href="https://hypernerf.github.io">-->
-<!--            HyperNeRF-->
-<!--          </a>-->
-<!--          <a class="navbar-item" href="https://nerfies.github.io">-->
-<!--            Nerfies-->
-<!--          </a>-->
-<!--          <a class="navbar-item" href="https://latentfusion.github.io">-->
-<!--            LatentFusion-->
-<!--          </a>-->
-<!--          <a class="navbar-item" href="https://photoshape.github.io">-->
-<!--            PhotoShape-->
-<!--          </a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--  </div>-->
-<!--</nav>-->
-
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Meatballs: Open World Concept Discovery and their Interlayer Connections in Deep Models</h1>
-          <div class="is-size-3 publication-authors">
-            CVPR 2024 (Highlight)
-          </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://mkowal2.github.io/">Matt Kowal</a><sup>1,3</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://lassonde.yorku.ca/users/wildes">Richard P. Wildes</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://csprofkgd.github.io/">Konstantinos G. Derpanis</a><sup>1,2,3</sup>,
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>York University,</span>
-            <span class="author-block"><sup>2</sup>Samsung AI Centre Toronto</span>
-            <span class="author-block"><sup>3</sup>Vector Institute</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2404.02233"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-<!--               Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=_PW4MQXRsKM"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-<!--               Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/YorkUCVIL/VCC"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <span class="link-block">
-                <a href="https://mkowal2.github.io/VCC_Demo/"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span>Demo</span>
-                  </a>
-              </span>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
+  <section class="hero">
     <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Universal Sparse Autoencoders: Interpretable Cross-Model Concept
+              Alignment</h1>
+            <div class="is-size-3 publication-authors">
+              ICML 2025
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://harry-thasarathan.github.io">Harrish Thasarathan</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://j-forsyth.github.io">Julian Forsyth</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://thomasfel.fr/">Thomas Fel</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://mkowal2.github.io/">Matthew Kowal</a><sup>1,2,4,5</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://csprofkgd.github.io/">Konstantinos G. Derpanis</a><sup>1,6,2,7</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup> York University, Toronto, Canada</span>
+              <span class="author-block"><sup>2</sup> Vector Institute, Toronto, Canada</span>
+              <span class="author-block"><sup>3</sup> Kempner Institute, Harvard University, Boston, USA</span>
+              <span class="author-block"><sup>4</sup> FAR.AI</span>
+              <span class="author-block"><sup>5</sup> Trajectory Labs, Toronto</span>
+              <span class="author-block"><sup>6</sup> University of Toronto, Toronto, Canada</span>
+              <span class="author-block"><sup>7</sup> Samsung AI Centre, Toronto</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2502.03714" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/YorkUCVIL/UniversalSAE"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="demo.html" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-paw"></i>
+                    </span>
+                    <span>Demo</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="columns is-centered has-text-centered">
+          <div class="content has-text-justified">
+            <h2 class="title is-3">
+              <!-- AI vision models are increasingly diverse in their training,
+        architecture, and intended tasks. But do they learn to see the world
+        using the same fundamental building blocks? <br> -->
+              Universal Sparse Autoencoders (USAEs) create a universal,
+              interpretable concept space that reveals what multiple vision
+              models learn in common about the visual world.
+            </h2>
+          </div>
+        </div>
+        <div class="main-figure-wrapper" style="margin-top: 35px;">
+          <img src='img/fig1cap.png' class="main-figure-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
       <div class="columns is-centered has-text-centered">
-        <div class="content has-text-justified">
-        <h2 class="title is-3">A `connectome' maps every neuron and synapse in a biological neural network. Is it possible
-          to visualize all human interpretable concepts and connections in every layer of a DNN? Visual Concept
-          Connectomes discover concepts and quantify their interlayer connections in DNNs.</h2>
-        </div>
-        </div>
-      <div style='margin-bottom: 1px; text-align: center;'>
-        <img src='img/AllLayerVCC.png'>
-      </div>
-<!--      <h2 class="subtitle has-text-centered">-->
-<!--        Visual Concept Connectomes discover concepts and quantify their interlayer connections in DNNs.-->
-<!--      </h2>-->
-    </div>
-  </div>
-</section>
-
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Understanding what deep network models capture in their learned representations is a fundamental challenge
-            in computer vision. We present a new methodology to understanding such vision models, the Visual Concept
-            Connectome (VCC), which discovers human interpretable concepts and their interlayer connections in a
-            fully unsupervised manner. Our approach simultaneously reveals fine-grained concepts at a layer,
-            connection weightings across all layers and is amendable to global analysis of network structure
-            (e.g. branching pattern of hierarchical concept assemblies). Previous work yielded ways to extract
-            interpretable concepts from single layers and examine their impact on classification, but did not afford
-            multilayer concept analysis across an entire network architecture. Quantitative and qualitative empirical
-            results show the effectiveness of VCCs in the domain of image classification. Also, we leverage VCCs for
-            the application of failure mode debugging to reveal where mistakes arise in deep networks.
-
-          </p>
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present <i>Universal Sparse Autoencoders</i> (USAEs), a framework for uncovering and aligning
+              interpretable concepts spanning multiple pretrained deep neural networks.
+              Unlike existing concept-based interpretability methods, which focus on a single model, USAEs jointly learn
+              a universal concept space that can reconstruct and interpret the internal activations of multiple models
+              at once.
+              Our core insight is to train a single, overcomplete sparse autoencoder (SAE) that ingests activations from
+              any model and decodes them to approximate the activations of any other model under consideration.
+              By optimizing a shared objective, the learned dictionary captures common factors of
+              variation—<i>concepts</i>—across different tasks, architectures, and datasets.
+              We show that USAEs discover <i>semantically coherent</i> and <i>important</i> universal concepts across
+              vision models; ranging from low-level features (e.g., colors and textures) to higher-level structures
+              (e.g., parts and objects).
+              Overall, USAEs provide a powerful new method for interpretable cross-model analysis and offer novel
+              applications—such as coordinated activation maximization—that open avenues for deeper insights in
+              multi-model AI systems.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-<!--    / Abstract. -->
+  </section>
+  <!--    / Abstract. -->
 
 
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
+  <section class="section">
+    <div class="container is-max-desktop">
 
       <!-- Method. -->
-      <div class="column">
-        <div class="content">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <!-- <div class="content"> -->
           <h2 class="title is-3">Method Overview</h2>
-              <p>
-                A VCC is constructed in three main steps as shown in Figure 2. (A) Image segments are extracted in the model’s feature space
-                via divisive clustering to produce semantically meaningful image regions for each selected layer.
-                (B) Layer-wise concepts, i.e. the nodes of the graph, are discovered in an open world fashion
-                (i.e. no labelled data is required) via a second round of clustering over the dataset of image
-                regions, independently for each layer.
-                (C) Edges are calculated that indicate the contribution of concepts from earlier to deeper layers
-                via an approach we introduce, Interlayer Testing with Concept Activation Vectors (ITCAVs) - an
-                interlayer generalization of the TCAV method.
-              </p>
-            <img src='img/Method.png'>
+          <p>
+            Contrasting standard SAEs, which reinterpret the internal representations of a single model, USAEs extend
+            this notion across M different models. The key insight of USAEs is to learn a shared sparse code,
+            Z<!--∈ ℝⁿ×ᵐ-->, which allows every model to be reconstructed from the same sparse embedding.
+            Each model has its own encoder and decoder pair to translate to and from this universal space; training
+            aligns the encoders and decoders <i> across models </i> by requiring every decoder to reconstruct features
+            from the shared sparse code produced by any model’s encoder.
+          </p>
+          <div
+            style="display: flex; justify-content: center; align-items: flex-start; margin-bottom: 1em; max-width: 100%;">
+            <div style="flex:1; max-width: 50%; text-align: center;">
+              <img src="img/method1cap.png" style="width:100%; height:auto;">
+            </div>
+            <div style="width: 4%;"></div>
+            <div style="flex:1; max-width: 50%; text-align: center;">
+              <img src="img/method2cap.png" style="width:100%; height:auto;">
 
+            </div>
+          </div>
+          <!-- </div> -->
         </div>
       </div>
-    </div>
 
-    <!-- Results. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Results</h2>
-          <h2 class="title is-4">Visualizing concept hierarchies</h2>
-            <p>
-                Figure 4 shows a three layer VCC for GoogLeNet targeting the class “Jay”. Notice how the inception5b
-                ‘bird’ concepts (c51, c52) form as selective weighting of inception4c concepts background (c41),
-                bird part (c42, c44) and tree branch (c43), while the inception5b background concepts (c53, c54)
-                form differently from weighting of solely inception4c background part concepts (e.g. tree branch (c43)
-                and green leaves (c41)). Notably, the network separates subspecies of Jay in the final layer
-                (e.g. Blue Jay (c52 ) and other types (c51 )). The concepts found in inception4c are composed from
-                varying combinations of colors and parts found in conv3 (e.g. various bird parts (c31, c33) contribute
-                to the bird concepts at inception4c). In the end, both scene and object contribute with strong weights
-                to the final category.
-            </p>
-            <div style="text-align: center; margin-bottom: 20px">
-                <img src="img/Jay.png" width="75%" height="auto">
-            </div>
-
-
-          <h2 class="title is-4">Subgraph Quantitative Analysis</h2>
-            <p>
-              We now quantitatively analyze four-layer VCCs generated for the following CNNs and transformers:
-              ResNet50, VGG16, MobileNetv3, ViT-b and MViT. Layers are selected approximately uniformly across a
-              model to capture concepts at different abstractions. We use standard metrics for analyzing tree-like
-              data structures in a per-layer fashion: branching factor (extent to which the representation is
-              distributed), number of nodes (how many concepts the model uses to encode a particular class), edge
-              weights (strength of connection between concepts) and edge weight variance (variability of connection
-              strength).
-            </p>
-
-            <p>
-              We calculate averages over 50 VCCs for 50 randomly selected ImageNet classes.
-              Patterns are apparent in concept numbers and edge weights: more, but weaker,
-              concepts in early layers vs. fewer, but stronger, concepts in later layers. These patterns
-              reflect the shared low-level features (e.g. colors, textures) across classes and more specific
-              features near the end, which yield larger ITCAV values. Also, CNNs show a decreasing branching factor,
-              while transformers maintain a consistent number until the final layer, where all models converge to
-              about two concepts, typically of an ImageNet class’s foreground-background structure. Transformers
-              have higher final layer edge weight variance compared to CNNs, indicating their ability to better
-              differentiate earlier concepts’ importance in forming later concepts, potentially explaining their
-              superior classification performance (i.e. all information is not equally valuable).
-            </p>
-
-            <p>
-              We also compare models (ResNet50 and VGG16) when trained with self-supervision (SimCLR) or for adversarial
-              robustness, i.e. on Stylized ImageNet (ADV). We observe that robust and self-supervised models
-              have fewer low-level concepts and compositionality than the originals, likely as their training yields
-              less reliance on texture (stylization perturbs texture) and color (SimCLR training jitters color).
-            </p>
-            <div style="text-align: center;">
-                <img src="img/SubGraphMetrics.png" width="100%" height="auto">
-            </div>
-
-
-
-          <h2 class="title is-4">CNNs vs. Transformers: Qualitative Analysis</h2>
-            <p>
-               To examine these patterns further, VCC visualizations for a CNN and transformer subgraphs are shown in Fig. 7.
-              Here, we limit to a ResNet50 and MViT and two later layers with the class output. The connection diversity
-              in the last layer is indeed observed to be larger for the transformer vs. the CNN. Notably, over half
-              of the concepts in the CNN capture background centric concepts, while the transformer has only a single
-              background centric concept.
-            </p>
-            <div style="text-align: center;">
-                <img src="img/CNNvsTRANS.png" width="90%" height="auto">
-            </div>
-
-
-          <h2 class="title is-4">All Layer Quantitative Analysis</h2>
-            <p>
-              Figure 6 presents a quantitative analyses on all layer VCCs for three diverse models: (i) a standard CNN, VGG-16,
-              (ii) an efficient model, MobileNetv3 and (iii) a transformer, MViT. Averages are taken over 10 VCCs for
-              10 random ImageNet classes. Common trends appear in all models. Concept
-              composition is non-linear across layers, with branching factor ranging from 5-15 and converging to
-              approximately two near the last layers. The peak number of concepts, around 20, is consistently at 30-40%
-              of network depth and, as in the four-layer analysis, also converges to two in the final layer.
-              Edge weights and variances are in accord with the main findings of the four-layer analysis, but also
-              reveal other insights into the compositional nature of the models. At a fine grained view, all layer analysis,
-              each model more readily displays unique edge weight characteristics: VGG16’s average weights decrease
-              in later layers, MobileNetv3’s drop greatly before the final layer and MViT maintains consistent values.
-              Still, overall these results indicate that penultimate concepts differ between CNNs vs. transformers, as
-              supported by our four-layer VCC analysis. Higher variances in initial layers suggest a
-              diverse combination of concepts, whereas deeper layers indicate a more uniform composition. Transformers,
-              however, show a variance increase in the final layer, indicating greater compositionality.
-            </p>
-            <div style="text-align: center;">
-                <img src="img/ALlLayerMetrics.png" width="70%" height="auto">
-            </div>
-
-          <h2 class="title is-4">Model Debugging with VCCs</h2>
-            <p>
-               To show the VCC’s practical utility, we consider application to model failure analysis. VCCs provide
-              insights on compositional concepts across layers and distributed representations.
-              Figure 8 shows a ‘Tricycle’ incorrectly classified as a ‘Rickshaw’ by a ResNet50 model,
-              and the corresponding incorrect VCC (‘Rickshaw’, left) and correct VCC (‘Tricycle’, right).
-              As the image is decomposed using our top-down segmentation, it is revealed that the
-              majority of pooled segments are closer, in terms of l2 distance, to concepts in the
-              Rickshaw VCC (red outlines) than the tricycle VCC (green outlines). While the model correctly
-              encoded the wheel and handlebar portions of the images as tricycle concepts, the background and
-              collapsible hood concepts are composed from layers two through four as rickshaw concepts,
-              which may cause the error. We also note the lack of other tricycle-specific concepts (e.g. children).
-
-            </p>
-            <div style="text-align: center;">
-                <img src="img/Debug.png" width="100%" height="auto">
-            </div>
-
-
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{kowal2024visual,
-  title={Visual Concept Connectome (VCC): Open World Concept Discovery and their Interlayer Connections in Deep Models},
-  author={Kowal, Matthew and Wildes, Richard P and Derpanis, Konstantinos G},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={10895--10905},
-  year={2024}
-}</code></pre>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="https://arxiv.org/pdf/2404.02233.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://yorkucvil.github.io/VCC/" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
+      <!-- Results. -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Results</h2>
+          <h2 class="title is-4">Universal Concept Discovery</h2>
           <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
+            We discover a diverse variety of visual concepts in the universal space Z—that is, concepts which are
+            shared and index-aligned across all models. These universal concepts range from low-level properties such as
+            colour and texture (e.g., “yellow,” “curves”) to high-level semantic parts and object groupings (e.g.,
+            “bolts,” “animal group faces”). Furthermore, because training is performed using spatial tokens, the
+            resulting concepts exhibit spatial precision, activating only for the particular regions
+            in the input images corresponding to the given concept.
           </p>
-          <p>
-            Project page based on <a
-              href="https://github.com/nerfies/nerfies.github.io">Nerfies webpage</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+          <div style="text-align: center; margin-bottom: 40px">
+            <img src="img/qualres-cap.png" width="100%" height="auto">
+          </div>
 
+          <h2 class="title is-4">Model-Unique Concepts</h2>
+          <p>
+            We find that some concepts are <i>not</i> universally shared between all models. DinoV2, for example,
+            has many unique concepts which reflect aspects of 3-dimensional space—such as object geometry, spatial
+            depth, and viewing orientation.
+            SigLIP, on the other hand, has unique concepts which showcase its capability of jointly capturing
+            textual-visual correspondences. A prime example is the “star” concept, activating on star
+            shapes as well as the word “star”.
+          </p>
+          <div style="text-align: center; margin-bottom: 0px">
+            <img src="img/dino3dcap.png" width="100%" height="auto">
+          </div>
+          <div style="text-align: center; margin-bottom: 40px">
+            <img src="img/SigLIPcap.png" width="100%" height="auto">
+          </div>
+
+          <h2 class="title is-4">Visualizing Universal Concepts</h2>
+          <p>
+            We present an immediate application of USAEs, Coordinated Activation Maximization. For a given concept,
+            optimizing the image inputs according to each model's encoder produces a per-model concept visualization.
+            This reveals the different ways in which each model encodes the same concept. For example, some models
+            We also demonstrate one immediate application of USAEs,
+            Coordinated Activation Maximization, where optimizing the inputs of multiple models to activate the same
+            concepts reveals how different models encode the same concept.
+          </p>
+          <div style="text-align: center; margin-bottom: 40px">
+            <img src="img/CAMcap.png" width="100%" height="auto">
+          </div>
+
+          <h2 class="title is-4">The Most Universal Concepts Are Also the Most Important</h2>
+          <p>
+            We define <i>Concept Importance</i> by measuring the impact of a given concept on reconstruction of the
+            model activations. <i>Universality</i> can be quantified by computing how often the
+            neurons in the concept space of every model fire together for the same input tokens. We find a distinct
+            correlation between Concept Importance and Universality. Additionally, we analyse firing entropy to
+            distinguish 3 modes of concept activation: concepts which are universal across all models, concepts
+            which are shared between model pairs, and concepts which are model unique.
+          </p>
+          <div style="text-align: center; margin-bottom: 40px">
+            <img src="img/quant.png" width="80%" height="auto">
+          </div>
+
+          <h2 class="title is-4">Universal Concepts Generalise Beyond Training Data</h2>
+          <p>
+            While our USAE is solely trained with ImageNet, we find that its concepts generalise well to other
+            datasets. This suggests that robust representational capacity can be achieved even with relatively limited
+            training data.
+          </p>
+          <div style="text-align: center;">
+            <img src="img/celeb.png" width="100%" height="auto">
+          </div>
+
+
+          <section class="section" id="BibTeX">
+            <div class="container is-max-desktop content">
+              <h2 class="title">BibTeX</h2>
+              <pre><code>
+@inproceedings{
+thasarathan2025universal,
+title={Universal Sparse Autoencoders: Interpretable Cross-Model Concept Alignment},
+author={Harrish Thasarathan and Julian Forsyth and Thomas Fel and Matthew Kowal and Konstantinos G. Derpanis},
+booktitle={Forty-second International Conference on Machine Learning},
+year={2025},
+url={https://openreview.net/forum?id=UoaxRN88oR}
+}
+            </code>
+            </pre>
+            </div>
+          </section>
+
+          <footer class="footer">
+            <div class="container">
+              <div class="content has-text-centered">
+                <a class="icon-link" href="https://arxiv.org/pdf/2404.02233.pdf">
+                  <i class="fas fa-file-pdf"></i>
+                </a>
+                <a class="icon-link" href="https://yorkucvil.github.io/VCC/" class="external-link" disabled>
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+              <div class="columns is-centered">
+                <div class="column is-8">
+                  <div class="content">
+                    <p>
+                      This website is licensed under a <a rel="license"
+                        href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                        Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </p>
+                    <p>
+                      Project page based on <a href="https://github.com/nerfies/nerfies.github.io">Nerfies
+                        webpage</a>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
 </body>
+
 </html>
