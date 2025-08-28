@@ -1,0 +1,51 @@
+global:
+  path_to_cache: # path to your cached models in form npz
+  combined_npz: true # whether the derived model activations from each image are stored all together in the same npz file (for quicker loading)
+  imagenet_root: # location of imagenet directory
+  debug: 1
+  exp_factor: 8 # expansion factor of the input shape eg. 8*768=6144
+  input_shape: 768
+  batch_size: 32
+  nb_epochs: 30 # number of epochs
+  standardize: true # standardize activations
+  divide_norm: false # normalize (rather than standardize)
+  target_class: "ALL" # or eg. tabby cat, cottontail rabbit etc.
+  use_class_tokens: false
+  num_tokens: 196 #
+  loss_criterion: L1
+  lr: 0.0003
+  final_lr: 1.0e-06
+  run_name: ${model_1}_${model_2}_${model_3}_ex${exp_factor}_bs${batch_size}_topk${top_k}_LR${lr}_class-${target_class}_cross_${loss_criterion}_${nb_epochs}epochs_TEST
+viz:
+  batch_size: 100
+  class_name: "ALL" # or eg. 'hippopotamus'
+  sample_size: 50000 # for all or eg. 500
+  set: val # default: validation set
+sae_params:
+  encoder_module: mlp_bn_1 # batchnorm mlp layer is used in encoder
+  dictionary_initializer: null
+  data_initializer: null
+  dictionary_normalization: l2
+  top_k: 32
+model_zoo:
+  SigLIP:
+    checkpoint_path: # final checkpoint appears after training in results config file
+    input_shape: 768
+    num_tokens: 196
+    og_model: SigLIP
+    model_mean: # model stats appear after training in results config file
+    model_std:
+  DinoV2:
+    checkpoint_path:
+    input_shape: 384
+    num_tokens: 196
+    og_model: DinoV2
+    model_mean:
+    model_std:
+  ViT:
+    checkpoint_path:
+    input_shape: 768
+    num_tokens: 196
+    og_model: ViT
+    model_mean:
+    model_std:

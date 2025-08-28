@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "Overcomplete"
+version = "0.0.2"
+description = "Toolbox for experimenting with (Overcomplete) Dictionary Learning for Vision model"
+authors = ["Thomas Fel <tfel@g.harvard.edu>"]
+license = "MIT"
+readme = "README.md"
+
+# requirements
+[tool.poetry.dependencies]
+python = ">=3.10"
+numpy = "*"
+matplotlib = "*"
+scikit-learn = "^1.2.0"
+scikit-image = "*"
+einops = "*"
+opencv-python = "*"
+torch = "*"
+torchvision = "*"
+timm = "*"
+
+# requirements dev
+[tool.poetry.dev-dependencies]
+tox = "*"
+ruff = "*"
+pytest = "*"
+pytest-cov = "*"
+pylint = "*"
+bumpversion = "*"
+
+# versioning
+[tool.bumpversion]
+current_version = "0.0.2"
+commit = true
+tag = true
+
+[tool.bumpversion.file]
+"pyproject.toml" = {}
+"overcomplete/__init__.py" = {}
+
+# ruff configs
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+ignore = [
+    "F401",
+    "D205",
+    "D200",
+    "D204",
+    "D401",
+]
+extend-select = [
+    "UP",  # pyupgrade
+    "D",   # pydocstyle
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+# retain setuptools find logic
+[tool.setuptools.packages.find]
+where = ["."]
+
+# poetry build configs
+[build-system]
+requires = ["poetry-core>=1.1.0"]
+build-backend = "poetry.core.masonry.api"
