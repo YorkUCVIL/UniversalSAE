@@ -1,7 +1,7 @@
 global:
-  path_to_cache: /local/ssd/harryt/datasets/imagenet_combined_SigLIP_DinoV2_ViT_activations_npz # path to your cached models in form npz
+  path_to_cache:  # path to your cached models in form npz
   combined_npz: true # whether the derived model activations from each image are stored all together in the same npz file (for quicker loading)
-  imagenet_root: /local/ssd/harryt/datasets/imagenet # location of imagenet directory
+  imagenet_root:  # location of imagenet directory
   debug: 1
   exp_factor: 8 # expansion factor of the input shape eg. 8*768=6144
   input_shape: 768

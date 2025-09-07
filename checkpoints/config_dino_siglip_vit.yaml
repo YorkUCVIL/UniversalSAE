@@ -1,7 +1,7 @@
 global:
-  path_to_cache: /local/ssd/harryt/datasets/imagenet_combined_SigLIP_DinoV2_ViT_activations_npz
+  path_to_cache:
   combined_npz: true
-  imagenet_root: /local/ssd/harryt/datasets/imagenet
+  imagenet_root:
   debug: 1
   exp_factor: 8
   input_shape: 768
@@ -29,24 +29,21 @@ sae_params:
   top_k: 32
 model_zoo:
   SigLIP:
-    #checkpoint_path: checkpoints/uni_SigLIP_checkpoint_29.pth
-    checkpoint_path: /home/harryt/projects/interp/Overcomplete-USAE/weights/SigLIP_DinoV2_ViT_ex8_bs32_topk32_LR0.0003_class-ALL_cross_L1_30epochs/SigLIP/uni_SigLIP_checkpoint_29.pth
+    checkpoint_path: checkpoints/uni_SigLIP_checkpoint_29.pth
     input_shape: 768
     num_tokens: 196
     og_model: SigLIP
     model_mean: -0.030537348240613937
     model_std: 2.231515407562256
   DinoV2:
-    #checkpoint_path: checkpoints/uni_DinoV2_checkpoint_29.pth
-    checkpoint_path: /home/harryt/projects/interp/Overcomplete-USAE/weights/SigLIP_DinoV2_ViT_ex8_bs32_topk32_LR0.0003_class-ALL_cross_L1_30epochs/DinoV2/uni_DinoV2_checkpoint_29.pth
+    checkpoint_path: checkpoints/uni_DinoV2_checkpoint_29.pth
     input_shape: 384
     num_tokens: 196
     og_model: DinoV2
     model_mean: 0.03290482237935066
     model_std: 2.474064350128174
   ViT:
-    #checkpoint_path: checkpoints/uni_ViT_checkpoint_29.pth
-    checkpoint_path: /home/harryt/projects/interp/Overcomplete-USAE/weights/SigLIP_DinoV2_ViT_ex8_bs32_topk32_LR0.0003_class-ALL_cross_L1_30epochs/ViT/uni_ViT_checkpoint_29.pth
+    checkpoint_path: checkpoints/uni_ViT_checkpoint_29.pth
     input_shape: 768
     num_tokens: 196
     og_model: ViT
