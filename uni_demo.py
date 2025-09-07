@@ -114,7 +114,7 @@ if __name__ == "__main__":
     }
 
     """ Hyperparameters can be specified via a config yaml file """
-    config_path = "config_test.yaml"
+    config_path = "config.yaml"
     CONFIG, CONFIG_viz, sae_params, model_zoo = load_model_zoo(config_path, models_used)
 
     """

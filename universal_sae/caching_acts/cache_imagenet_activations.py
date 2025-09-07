@@ -36,8 +36,8 @@ def load_tensor_npz(path):
 
 if __name__ == '__main__':
 
+    model = ViT().cuda() # Bx197x768
     # model = SigLIP().cuda() # Bx196x768 (no cls token)
-    # model = ViT().cuda() # Bx197x768
     # model = DinoV2().cuda() #Bx(256[16x16tokens]+1cls+0register=257)x384
 
     model.eval()
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         image_paths = data_loader.dataset.samples[i * data_loader.batch_size:(i + 1) * data_loader.batch_size]
 
         # ViT
-        # output_features = model.model.forward_features(x) # to avoid removing cls token
+        output_features = model.model.forward_features(x) # to avoid removing cls token
 
         # SigLIP -> No cls token in forward features of vit_base_patch16_siglip_224
         # output_features = model.forward_features(x).cpu()
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
         # Loop through each sample in the batch
         for j in range(x.size(0)):  # Loop through batch size
-            
+
             # Get the corresponding image path (original ImageNet file path)
             image_path = image_paths[j][0]  # Assuming image path is in the 0th index
 
@@ -96,7 +96,7 @@ if __name__ == '__main__':
             os.makedirs(activation_dir, exist_ok=True)
 
             # Save both the activations and label
-            activation_filename = activation_path.replace('.JPEG', "string of model name")  # change extension
+            activation_filename = activation_path.replace('.JPEG', f"{model.__class__.__name__}")  # change extension
 
             '''save as float 16 not 32'''
             save_tensor_npz(path=activation_filename, tensors=(output_features[j].detach().clone(), y[j].detach().clone()))

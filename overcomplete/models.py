@@ -98,24 +98,32 @@ class DinoV2(BaseModel):
         )
 
     def forward_features(self, x):
-        """
-        Perform a forward pass on the input tensor.
-        Assume input is in the same device as the model.
+         """
+         Perform a forward pass on the input tensor.
+         Assume input is in the same device as the model.
 
-        Parameters
-        ----------
-        x : torch.Tensor
-            Input tensor of shape (batch_size, channels, height, width).
+         Parameters
+         ----------
+         x : torch.Tensor
+             Input tensor of shape (batch_size, channels, height, width).
 
-        Returns
-        -------
-        torch.Tensor
-            Output features.
-        """
-        with torch.no_grad():
-            if self.use_half:
-                x = x.half()
-            return self.model.forward_features(x)["x_norm_patchtokens"]
+         Returns
+         -------
+         torch.Tensor
+             Output features.
+         """
+         with torch.no_grad():
+             if self.use_half:
+                 x = x.half()
+
+             output_dict = self.model.forward_features(x)
+             cls = output_dict['x_norm_clstoken'].unsqueeze(1)
+             output_features = torch.cat((cls, output_dict['x_norm_patchtokens']), dim=1)
+             return output_features
+         #with torch.no_grad():
+         #    if self.use_half:
+         #        x = x.half()
+         #    return self.model.forward_features(x)["x_norm_patchtokens"]
 
 
 class SigLIP(BaseModel):

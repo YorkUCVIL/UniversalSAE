@@ -13,7 +13,7 @@ import wandb
 import numpy as np
 import random
 
-from universal_sae.uni_visuals import (
+from universal_sae.uni_analysis import (
     plot_reconstruction_matrix,
     interpolate_patch_tokens,
 )
