@@ -40,6 +40,12 @@ The **Activation Dataset/Loader** is customized for training on Imagenet:
 
 To **cache model activations from Imagenet**, see scripts in the caching_acts folder.
 
+## Recreating Paper Results 
+Download the checkpoints from the following link:
+- [ICML USAE Model Checkpoints](https://drive.google.com/drive/folders/1zkh5Ftd2dRJFKEzYwad0AZKsn-A8MWNx?usp=sharing)
+- Place each *.pth file in the checkpoints folder
+- Modify config path in example_visualization.py to checkpoints/config.yaml and launch the script
+
 ## Citation
 
 If you use this work, please cite:
