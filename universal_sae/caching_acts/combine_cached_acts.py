@@ -61,7 +61,7 @@ def combine_activations(activation_root: str, output_root: str, split: str, sour
 
 
 if __name__ == '__main__':
-    #If you have enough GPU space to load all models you can save activations in a single npz from the start (cache_imagenet_activations.py)
+    #If you have enough GPU vram to load all models you can save activations in a single npz from the start (cache_imagenet_activations.py)
 
     activation_root = "" # folder containing separate npz files for each model's activations
     output_root = "" # output folder for combined_npz activations

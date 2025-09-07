@@ -98,5 +98,4 @@ if __name__ == '__main__':
             # Save both the activations and label
             activation_filename = activation_path.replace('.JPEG', f"{model.__class__.__name__}")  # change extension
 
-            '''save as float 16 not 32'''
             save_tensor_npz(path=activation_filename, tensors=(output_features[j].detach().clone(), y[j].detach().clone()))

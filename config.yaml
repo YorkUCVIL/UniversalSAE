@@ -19,7 +19,7 @@ global:
 viz:
   batch_size: 100
   class_name: "ALL" # or eg. 'hippopotamus'
-  sample_size: 5000 # for all or eg. 500
+  sample_size: 5000 # 50000 for all or eg. 500 for subset
   set: val # default: validation set
 sae_params:
   encoder_module: mlp_bn_1 # batchnorm mlp layer is used in encoder
